@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'SPA/base.html' %}
 {% load static %}
 {% block style %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -56,7 +56,7 @@
         <p class="card-text">{{ clothing.description }}</p>
         <p class="card-text">R${{ clothing.value }},00</p>
         <p class="card-text">Quantidade: {{ clothing.amount }} unidades</p>
-        <a href="{% url 'like_clothing' clothing.id %}" id="likeButton" class="like-button {% if liked %}liked{% endif %}">
+        <a href="{% url 'spa_like' clothing.id %}" id="likeButton" class="like-button {% if liked %}liked{% endif %}">
             <i class="fa {% if liked %}fa-thumbs-down{% else %}fa-thumbs-up{% endif %}"></i>
             {% if user.is_authenticated %}
                 {% if liked %}
@@ -68,7 +68,7 @@
                 {{ clothing.total_likes }}
             {% endif %}
         </a>
-        <form method="post" action="{% url 'comment_clothing' clothing.id %}">
+        <form method="post" action="{% url 'spa_comment' clothing.id %}">
             {% csrf_token %}
             <div class="form-group">
                 <textarea class="form-control" name="content" rows="3" placeholder="Adicionar comentário"></textarea>
